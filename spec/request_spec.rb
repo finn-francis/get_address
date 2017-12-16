@@ -27,7 +27,7 @@ RSpec.describe GetAddress::Request do
         api_key:  "OVERRIDDEN_API_KEY"
       }
     end
-    let(:set_options) { request.send(:set_options, options) }
+    let!(:set_options) { request.send(:set_options, options) }
 
     it "should set the passed_in instance variables along with the defaults from the config settings" do
       expect(set_options[:postcode]).to     eq "FOO"
@@ -36,5 +36,14 @@ RSpec.describe GetAddress::Request do
       expect(set_options[:sort]).to         eq false
       expect(set_options[:format_array]).to eq true
     end
+
+    context "unpermitted options are sent through" do
+      let(:options) { { unnallowed_option: false } }
+
+      it "should not set the @unallowed_option variable" do
+        expect(request.instance_variable_get('@unnallowed_option')).to be nil
+      end
+    end
+  end
   end
 end
