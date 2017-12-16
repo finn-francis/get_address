@@ -6,10 +6,9 @@ module GetAddress
 
     attr_reader *PERMITTED_VALUES
 
-    def initialize(options = {})
-      # TODO raise error if a postcode is not provided
     def initialize(options)
       @options = options
+      check_for_required_fields
       # TODO raise error if an api_key is not provided(before the request is sent)
       set_options
       generate_url
@@ -20,6 +19,10 @@ module GetAddress
 
     def config
       GetAddress.config
+    def check_for_required_fields
+      unless options.keys.include?(:postcode)
+        raise ArgumentError.new("Missing keyword argument: :postcode")
+      end
     end
 
     def set_options
