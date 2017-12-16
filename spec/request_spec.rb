@@ -7,16 +7,6 @@ RSpec.describe GetAddress::Request do
   let(:options) { { postcode: "FOO" } }
   before { configure }
 
-  describe "#config" do
-    it "should return the GetAddress config" do
-      expect(request.send(:config)).to eq config
-    end
-  end
-
-  describe "#config_settings" do
-    it "should return the config settings" do
-      expect(request.send(:config_settings)).to eq config.settings
-    end
   it "should require a postcode" do
     expect { GetAddress::Request.new({}) }.to raise_error(ArgumentError).with_message("Missing keyword argument: :postcode")
   end

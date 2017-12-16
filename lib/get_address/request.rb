@@ -1,6 +1,9 @@
+require "get_address/config_methods"
+
 module GetAddress
   class Request
     include GetAddress::UrlGenerator
+    include GetAddress::ConfigMethods
 
     PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house].freeze
 
@@ -17,8 +20,6 @@ module GetAddress
     private
     attr_reader :options
 
-    def config
-      GetAddress.config
     def check_for_required_fields
       unless options.keys.include?(:postcode)
         raise ArgumentError.new("Missing keyword argument: :postcode")
@@ -30,10 +31,6 @@ module GetAddress
         next unless PERMITTED_VALUES.include?(key)
         instance_variable_set "@#{key}", value
       end
-    end
-
-    def config_settings
-      config.settings
     end
   end
 end
