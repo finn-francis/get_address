@@ -4,7 +4,7 @@ module GetAddress
 
     PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house].freeze
 
-    attr_accessor *PERMITTED_VALUES
+    attr_reader *PERMITTED_VALUES
 
     def initialize(options = {})
       # TODO raise error if a postcode is not provided
