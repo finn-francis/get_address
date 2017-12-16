@@ -44,4 +44,10 @@ RSpec.describe GetAddress do
       end
     end
   end
+
+  describe "BASE_URL" do
+    it "should return the getaddress.io url" do
+      expect(GetAddress::BASE_URL).to eq "https://api.getAddress.io/find/"
+    end
+  end
 end
