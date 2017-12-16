@@ -4,7 +4,7 @@ RSpec.describe GetAddress::Request do
   extend SetupConfiguration
 
   let(:request) { GetAddress::Request.new(options) }
-  let(:options) { {} }
+  let(:options) { { postcode: "FOO" } }
   before { configure }
 
   describe "#config" do
@@ -17,6 +17,8 @@ RSpec.describe GetAddress::Request do
     it "should return the config settings" do
       expect(request.send(:config_settings)).to eq config.settings
     end
+  it "should require a postcode" do
+    expect { GetAddress::Request.new({}) }.to raise_error(ArgumentError).with_message("Missing keyword argument: :postcode")
   end
 
   describe "#set_options" do
@@ -27,7 +29,9 @@ RSpec.describe GetAddress::Request do
         api_key:  "OVERRIDDEN_API_KEY"
       }
     end
-    let!(:set_options) { request.send(:set_options, options) }
+    let(:set_options) { request.send(:set_options) }
+
+    before { request.instance_variable_set("@options", options) }
 
     it "should set the passed_in instance variables along with the defaults from the config settings" do
       expect(set_options[:postcode]).to     eq "FOO"
@@ -38,9 +42,10 @@ RSpec.describe GetAddress::Request do
     end
 
     context "unpermitted options are sent through" do
-      let(:options) { { unnallowed_option: false } }
+      let(:options) { { unnallowed_option: false, postcode: "postcode" } }
 
       it "should not set the @unallowed_option variable" do
+        set_options
         expect(request.instance_variable_get('@unnallowed_option')).to be nil
       end
     end
