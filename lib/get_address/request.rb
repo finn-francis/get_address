@@ -7,6 +7,8 @@ module GetAddress
     attr_accessor *PERMITTED_VALUES
 
     def initialize(options = {})
+      # TODO raise error if a postcode is not provided
+      # TODO raise error if an api_key is not provided(before the request is sent)
       set_options(options)
       generate_url(postcode, house)
     end
