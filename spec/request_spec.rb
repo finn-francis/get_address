@@ -45,5 +45,13 @@ RSpec.describe GetAddress::Request do
       end
     end
   end
+
+  describe "PERMITTED_VALUES" do
+    let(:permitted_values) do
+      [:api_key, :format_array, :sort, :postcode, :house]
+    end
+    it "should contain all the values that are allowed to be passed in to the initializer" do
+       expect(GetAddress::Request::PERMITTED_VALUES).to eq permitted_values
+    end
   end
 end
