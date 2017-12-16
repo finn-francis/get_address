@@ -1,6 +1,6 @@
 module GetAddress
   class Request
-    PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house, :config].freeze
+    PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house].freeze
 
     attr_accessor *PERMITTED_VALUES
 
@@ -8,11 +8,11 @@ module GetAddress
       set_options(options)
     end
 
+    private
+
     def config
       GetAddress.config
     end
-
-    private
 
     def set_options(options)
       { **config_settings, **options }.each do |key, value|

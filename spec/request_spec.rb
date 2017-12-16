@@ -9,7 +9,7 @@ RSpec.describe GetAddress::Request do
 
   describe "#config" do
     it "should return the GetAddress config" do
-      expect(request.config).to eq config
+      expect(request.send(:config)).to eq config
     end
   end
 
