@@ -8,18 +8,21 @@ module GetAddress
 
     def initialize(options = {})
       # TODO raise error if a postcode is not provided
+    def initialize(options)
+      @options = options
       # TODO raise error if an api_key is not provided(before the request is sent)
-      set_options(options)
-      generate_url(postcode, house)
+      set_options
+      generate_url
     end
 
     private
+    attr_reader :options
 
     def config
       GetAddress.config
     end
 
-    def set_options(options)
+    def set_options
       { **config_settings, **options }.each do |key, value|
         next unless PERMITTED_VALUES.include?(key)
         instance_variable_set "@#{key}", value
