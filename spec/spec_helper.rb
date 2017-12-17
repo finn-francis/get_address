@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'simplecov'
 require 'get_address'
 require 'pry'
 
