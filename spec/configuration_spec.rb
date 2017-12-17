@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'get_address/configuration'
 
 RSpec.describe GetAddress::Configuration do
   extend SetupConfiguration

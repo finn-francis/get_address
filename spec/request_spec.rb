@@ -49,4 +49,10 @@ RSpec.describe GetAddress::Request do
        expect(GetAddress::Request::PERMITTED_VALUES).to eq permitted_values
     end
   end
+
+  describe '#klass' do
+    it 'should return the class' do
+      expect(request.send(:klass)).to be GetAddress::Request
+    end
+  end
 end
