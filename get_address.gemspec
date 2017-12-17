@@ -36,5 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'pry-byebug'
 
-  spec.add_runtime_dependency 'httparty'
+  spec.add_dependency 'httparty'
 end

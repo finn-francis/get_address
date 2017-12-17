@@ -1,7 +1,9 @@
 require 'get_address/config_methods'
+require 'httparty'
 
 module GetAddress
   class Request
+    include HTTParty
     include GetAddress::UrlGenerator
     include GetAddress::ConfigMethods
 
