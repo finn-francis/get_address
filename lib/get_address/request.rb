@@ -1,4 +1,4 @@
-require "get_address/config_methods"
+require 'get_address/config_methods'
 
 module GetAddress
   class Request
@@ -22,7 +22,7 @@ module GetAddress
 
     def check_for_required_fields
       unless options.keys.include?(:postcode)
-        raise ArgumentError.new("Missing keyword argument: :postcode")
+        raise ArgumentError.new('Missing keyword argument: :postcode')
       end
     end
 

@@ -1,9 +1,9 @@
-require "get_address/version"
-require "get_address/url_generator"
+require 'get_address/version'
+require 'get_address/url_generator'
 require 'get_address/request'
 
 module GetAddress
-  BASE_URL = "https://api.getAddress.io/find/"
+  BASE_URL = 'https://api.getAddress.io/find/'
 
   class << self
     def configure
