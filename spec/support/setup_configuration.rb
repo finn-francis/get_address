@@ -3,7 +3,7 @@ module SetupConfiguration
     object.instance_exec do
       let(:configure) do
         GetAddress.configure do |config|
-          config.api_key      = "MY_API_KEY"
+          config.api_key      = 'MY_API_KEY'
           config.format_array = true
           config.sort         = false
         end
