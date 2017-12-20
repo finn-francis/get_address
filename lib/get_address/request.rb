@@ -20,6 +20,7 @@ module GetAddress
       generate_url
     end
 
+    # TODO write spec for this
     def send_request
       HTTParty.get generate_url if valid?
     end
@@ -67,6 +68,7 @@ module GetAddress
     def set_options
       { **config_settings, **options }.each do |key, value|
         next unless PERMITTED_VALUES.include?(key)
+        # TODO if house is an empty string, set it to nil
         instance_variable_set "@#{key}", value
       end
     end
