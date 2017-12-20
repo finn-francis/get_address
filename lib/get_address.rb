@@ -18,7 +18,9 @@ module GetAddress
     alias_method :configuration, :config
 
     def find(options)
-      GetAddress::Request.new(options).send_request
+      request           = GetAddress::Request.new(options)
+      httparty_response = request.send_request
+      {request: request, httparty_response: httparty_response}
     end
   end
 end
