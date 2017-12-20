@@ -4,6 +4,6 @@ module GetAddress
 
     def generate_url
       @url = "#{GetAddress::BASE_URL}#{postcode}#{house ? "/#{house}" : "" }"
-    end
+    end 
   end
 end

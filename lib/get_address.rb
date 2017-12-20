@@ -16,5 +16,9 @@ module GetAddress
     end
     # def configuration
     alias_method :configuration, :config
+
+    def find(options)
+      GetAddress::Request.new(options).send
+    end
   end
 end
