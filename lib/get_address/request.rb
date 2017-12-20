@@ -20,7 +20,7 @@ module GetAddress
       generate_url
     end
 
-    def send
+    def send_request
       HTTParty.get generate_url if valid?
     end
 
