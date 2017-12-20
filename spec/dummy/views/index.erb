@@ -1,0 +1,18 @@
+<% if @address %>
+  <table>
+    <tr>
+      <th>Postcode</th>
+      <th>House</th>
+    </tr>
+    <tr>
+      <td>
+        <%= @address[:postcode] %>
+      </td>
+      <td>
+        <%= @address[:house] %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <h2>Enter a postcode and (optionally) a house</h2>
+<% end %>
