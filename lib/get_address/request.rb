@@ -20,6 +20,10 @@ module GetAddress
       generate_url
     end
 
+    def send
+      HTTParty.get generate_url if valid?
+    end
+
     # validity and error handling
     # TODO maybe turn into a module later?
     def valid?
