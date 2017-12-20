@@ -10,7 +10,7 @@ module GetAddress
     PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house].freeze
     REQUIRED_FIELDS  = [:api_key, :format_array, :sort, :postcode].freeze
 
-    attr_reader *PERMITTED_VALUES
+    attr_reader *PERMITTED_VALUES, :url
 
     def initialize(options)
       @options = options
