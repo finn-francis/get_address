@@ -51,7 +51,10 @@ module GetAddress
     def set_options
       { **config_settings, **options }.each do |key, value|
         next unless PERMITTED_VALUES.include?(key)
-        # TODO if house is an empty string, set it to nil
+
+        if value.is_a? String
+          value = nil if value.empty?
+        end
         instance_variable_set "@#{key}", value
       end
     end

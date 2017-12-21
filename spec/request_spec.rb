@@ -40,7 +40,7 @@ RSpec.describe GetAddress::Request do
         api_key:  'OVERRIDDEN_API_KEY'
       }
     end
-    let(:set_options) { request.send(:set_options) }
+    let!(:set_options) { request.send(:set_options) }
 
     before { request.instance_variable_set('@options', options) }
 
@@ -56,8 +56,15 @@ RSpec.describe GetAddress::Request do
       let(:options) { { unnallowed_option: false, postcode: 'postcode' } }
 
       it 'should not set the @unallowed_option variable' do
-        set_options
         expect(request.instance_variable_get('@unnallowed_option')).to be nil
+      end
+    end
+
+    context 'house is sent through as an empty string' do
+      let(:options) { { postcode: 'FOO' } }
+
+      it 'should set house to nil' do
+        expect(request.house).to be_nil
       end
     end
   end
