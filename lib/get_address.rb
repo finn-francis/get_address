@@ -1,4 +1,5 @@
 require 'get_address/version'
+require 'get_address/missing_fields_error'
 require 'get_address/configuration'
 require 'get_address/url_generator'
 require 'get_address/request'
