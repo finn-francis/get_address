@@ -1,4 +1,5 @@
 require 'get_address/config_methods'
+require 'get_address/request_validator'
 require 'httparty'
 
 module GetAddress
@@ -6,6 +7,7 @@ module GetAddress
     include HTTParty
     include GetAddress::UrlGenerator
     include GetAddress::ConfigMethods
+    include GetAddress::RequestValidator
 
     PERMITTED_VALUES = [:api_key, :format_array, :sort, :postcode, :house].freeze
     REQUIRED_FIELDS  = [:api_key, :format_array, :sort, :postcode].freeze
@@ -28,34 +30,14 @@ module GetAddress
       end
     end
 
-    # validity and error handling
-    # TODO maybe turn into a module later?
-    def valid?
-      self.errors = {}
-      add_to_errors(:missing_fields).nil?
-    end
-
-    def errors
-      @errors ||= {}
-    end
-
-    def missing_fields
-      # TODO Add a message if sort or format_array is missing
-      # first tell them to check that they didn't set either of them to nil
-      # if the didn't tell them to submit an issue on github
-      REQUIRED_FIELDS.select { |field| send(field).nil? }
-    end
-
     private
     attr_reader :options
-    attr_writer :errors
 
     def add_to_errors(method, *args)
       result = send(method, *args)
       errors[method] = result unless result.nil? || result.empty?
     end
 
-    # TODO turn this into a module later?
     def klass
       self.class
     end
