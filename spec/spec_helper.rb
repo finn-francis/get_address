@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'simplecov'
+require 'webmock/rspec'
 require 'get_address'
 require 'pry'
 
