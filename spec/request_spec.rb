@@ -13,7 +13,7 @@ RSpec.describe GetAddress::Request do
       request.valid?
     end
 
-    let(:missing_api_key) { [{ missing_fields: [:api_key] }] }
+    let(:missing_api_key) { { missing_fields: [:api_key] } }
   end
 
   shared_examples 'it is valid' do
@@ -58,6 +58,14 @@ RSpec.describe GetAddress::Request do
       it 'should not set the @unallowed_option variable' do
         set_options
         expect(request.instance_variable_get('@unnallowed_option')).to be nil
+      end
+    end
+  end
+
+    context 'there are missing fields' do
+      include_context 'there are missing fields'
+      it 'should raise an error' do
+        expect { request.send_request }.to raise_error(GetAddress::MissingFieldsError).with_message('Missing required fields: [:api_key]')
       end
     end
   end
@@ -128,7 +136,7 @@ RSpec.describe GetAddress::Request do
 
   describe '#add_to_errors' do
     context 'there are errors' do
-      let(:missing_api_key) { [{ missing_fields: [:api_key] }] }
+      let(:missing_api_key) { { missing_fields: [:api_key] } }
       before { request.instance_variable_set '@api_key', nil }
 
       it 'should add an error to the errors array' do

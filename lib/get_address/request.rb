@@ -15,14 +15,17 @@ module GetAddress
     def initialize(options)
       @options = options
       check_for_required_fields
-      # TODO raise error if an api_key is not provided(before the request is sent)
       set_options
       generate_url
     end
 
     # TODO write spec for this
     def send_request
-      HTTParty.get generate_url if valid?
+      if valid?
+        HTTParty.get generate_url
+      else
+        raise GetAddress::MissingFieldsError.new("Missing required fields: #{errors[:missing_fields]}")
+      end
     end
 
     # validity and error handling
