@@ -9,3 +9,8 @@ desc "Find all TODO's"
 task :todo do
   exec "grep -Rn --exclude-dir=coverage 'TODO' *"
 end
+
+desc "Open the GetAddress console"
+task :console do
+  exec "./bin/console"
+end
