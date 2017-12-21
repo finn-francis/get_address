@@ -33,11 +33,6 @@ module GetAddress
     private
     attr_reader :options
 
-    def add_to_errors(method, *args)
-      result = send(method, *args)
-      errors[method] = result unless result.nil? || result.empty?
-    end
-
     def klass
       self.class
     end

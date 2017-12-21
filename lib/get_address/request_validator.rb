@@ -19,5 +19,10 @@ module GetAddress
     private
 
     attr_writer :errors
+
+    def add_to_errors(method, *args)
+      result = send(method, *args)
+      errors[method] = result unless result.nil? || result.empty?
+    end
   end
 end
