@@ -33,10 +33,6 @@ module GetAddress
     private
     attr_reader :options
 
-    def klass
-      self.class
-    end
-
     def check_for_required_fields
       unless options.keys.include?(:postcode)
         raise ArgumentError.new('Missing keyword argument: :postcode')

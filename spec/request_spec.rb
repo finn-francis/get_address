@@ -86,12 +86,6 @@ RSpec.describe GetAddress::Request do
     end
   end
 
-  describe '#klass' do
-    it 'should return the class' do
-      expect(request.send(:klass)).to be GetAddress::Request
-    end
-  end
-
   describe '#valid?' do
     context 'it is valid' do
       it_behaves_like 'it is valid'
