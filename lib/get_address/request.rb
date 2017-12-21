@@ -28,21 +28,19 @@ module GetAddress
     # validity and error handling
     # TODO maybe turn into a module later?
     def valid?
-      errors = []
+      self.errors = {}
       add_to_errors(:missing_fields).nil?
     end
 
     def errors
-      @errors ||= []
+      @errors ||= {}
     end
 
     def missing_fields
       # TODO Add a message if sort or format_array is missing
       # first tell them to check that they didn't set either of them to nil
       # if the didn't tell them to submit an issue on github
-      REQUIRED_FIELDS.each_with_object([]) do |field, list|
-        list << field if send(field).nil?
-      end
+      REQUIRED_FIELDS.select { |field| send(field).nil? }
     end
 
     private
@@ -51,7 +49,7 @@ module GetAddress
 
     def add_to_errors(method, *args)
       result = send(method, *args)
-      errors << { method => result } unless result.nil? || result.empty?
+      errors[method] = result unless result.nil? || result.empty?
     end
 
     # TODO turn this into a module later?
