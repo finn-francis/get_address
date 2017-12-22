@@ -21,7 +21,6 @@ module GetAddress
       generate_url
     end
 
-    # TODO write spec for this
     def send_request
       if valid?
         HTTParty.get generate_url
