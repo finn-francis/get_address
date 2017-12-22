@@ -26,7 +26,7 @@ module GetAddress
       if valid?
         HTTParty.get generate_url
       else
-        raise GetAddress::MissingFieldsError.new("Missing required fields: #{errors[:missing_fields]}")
+        raise GetAddress::MissingFieldsError.new(errors[:missing_fields])
       end
     end
 

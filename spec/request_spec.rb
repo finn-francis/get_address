@@ -28,6 +28,12 @@ RSpec.describe GetAddress::Request do
     end
   end
 
+  shared_examples 'it raises a missing fields error' do
+    it 'should raise an error' do
+      expect { request.send_request }.to raise_error(GetAddress::MissingFieldsError)
+    end
+  end
+
   it 'should require a postcode' do
     expect { GetAddress::Request.new({}) }.to raise_error(ArgumentError).with_message('Missing keyword argument: :postcode')
   end
@@ -71,8 +77,14 @@ RSpec.describe GetAddress::Request do
 
     context 'there are missing fields' do
       include_context 'there are missing fields'
-      it 'should raise an error' do
-        expect { request.send_request }.to raise_error(GetAddress::MissingFieldsError).with_message('Missing required fields: [:api_key]')
+      it_behaves_like 'it raises a missing fields error'
+
+      context 'including defaults' do
+        before do
+          request.instance_variable_set('@sort', nil)
+          request.instance_variable_set('@format_array', nil)
+        end
+        it_behaves_like 'it raises a missing fields error'
       end
     end
   end
