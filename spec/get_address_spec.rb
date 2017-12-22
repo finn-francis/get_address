@@ -50,4 +50,19 @@ RSpec.describe GetAddress do
       expect(GetAddress::BASE_URL).to eq 'https://api.getAddress.io/find/'
     end
   end
+
+  # TODO test this properly when the response class is done
+  describe '#find' do
+    let(:do_request) { GetAddress.find(postcode: 'FOO') }
+    before do
+      configure
+      # TODO move this somewhere
+      stub_request(:get, "https://api.getaddress.io/find/FOO?api-key=MY_API_KEY&format=true&sort=false").
+       to_return(status: 200, body: "", headers: {})
+    end
+
+    it 'should send a request' do
+      expect(do_request[:request]).to be_a GetAddress::Request
+    end
+  end
 end
