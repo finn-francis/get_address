@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-class Test
+class ConfigMethodsTest
   include GetAddress::ConfigMethods
 end
 
 RSpec.describe GetAddress::ConfigMethods do
   extend SetupConfiguration
 
-  let(:test) { Test.new }
+  let(:test) { ConfigMethodsTest.new }
 
   before { configure }
 

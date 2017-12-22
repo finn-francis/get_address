@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class Test
+class UrlGeneratorTest
   include GetAddress::UrlGenerator
   attr_accessor :postcode, :house, :api_key, :format_array, :sort
 
@@ -13,7 +13,7 @@ class Test
 end
 
 RSpec.describe GetAddress::UrlGenerator do
-  let(:generator)    { Test.new }
+  let(:generator)    { UrlGeneratorTest.new }
   let(:generate_url) { generator.generate_url }
   let(:query_string) { '?api-key=MY_API_KEY&format=false&sort=true' }
 
