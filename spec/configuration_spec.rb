@@ -3,6 +3,18 @@ require 'spec_helper'
 RSpec.describe GetAddress::Configuration do
   extend SetupConfiguration
 
+  let(:expected_keymappings) do
+    {
+      line_1:  0,
+      line_2:  1,
+      line_3:  2,
+      line_4:  3,
+      county:  4,
+      town:    5,
+      country: 6
+    }
+  end
+
   describe 'attributes' do
     let(:config)     { GetAddress::Configuration.new }
     let(:attributes) { [:api_key, :format_array, :sort] }
@@ -15,29 +27,28 @@ RSpec.describe GetAddress::Configuration do
     end
 
     describe '#keymap' do
+      let(:expected_mappings) do
+        {
+          line_1:    0,
+          line_2:    1,
+          line_3:    2,
+          line_4:    3,
+          locality:  4,
+          town:      5,
+          country:   6
+        }
+      end
       it 'should return the key mappings' do
-        expect(config.keymap).to eq [:line_1, :line_2, :line_3, :line_4, :locality, :town, :country]
+        expect(config.keymap).to eq expected_mappings
       end
     end
 
     describe '#keymap=' do
       let(:keymap) { { locality: :county } }
-      let(:expected_keymappings) do
-        {
-          line_1:  0,
-          line_2:  1,
-          line_3:  2,
-          line_4:  3,
-          county:  4,
-          town:    5,
-          country: 6
-        }
-      end
       before { config.keymap = keymap }
 
-      it 'should set the keymap and keymappings' do
-        expect(config.keymap).to eq [:line_1, :line_2, :line_3, :line_4, :county, :town, :country]
-        expect(config.keymappings).to eq expected_keymappings
+      it 'should set the keymap and keymap' do
+        expect(config.keymap).to eq expected_keymappings
       end
     end
   end
@@ -54,23 +65,6 @@ RSpec.describe GetAddress::Configuration do
 
     it 'should return a hash of the configuration settings' do
       expect(config.settings).to eq(expected_settings)
-    end
-  end
-
-  describe '#keymappings' do
-    let(:keymappings) do
-      {
-        line_1:   0,
-        line_2:   1,
-        line_3:   2,
-        line_4:   3,
-        locality: 4,
-        town:     5,
-        country:  6
-      }
-    end
-    it 'should return the keymappings' do
-      expect(config.keymappings).to eq keymappings
     end
   end
 end

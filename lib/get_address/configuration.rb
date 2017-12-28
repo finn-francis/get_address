@@ -9,7 +9,7 @@ module GetAddress
 
     def keymap=(mappings)
       mappings.each do |old_mapping, new_mapping|
-        keymappings[new_mapping] = keymappings.delete(old_mapping)
+        keymap[new_mapping] = keymap.delete(old_mapping)
       end
     end
 
@@ -21,12 +21,7 @@ module GetAddress
       }
     end
 
-    # TODO need to think about re-naming these methods
     def keymap
-      keymappings.sort_by {|k, v| v}.map(&:first)
-    end
-
-    def keymappings
       @keymap ||= {
         line_1:   0,
         line_2:   1,
