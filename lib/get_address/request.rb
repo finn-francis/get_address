@@ -23,7 +23,7 @@ module GetAddress
 
     def send_request
       if valid?
-        HTTParty.get generate_url
+        Response.new(self, HTTParty.get(generate_url))
       else
         raise GetAddress::MissingFieldsError.new(errors[:missing_fields])
       end
