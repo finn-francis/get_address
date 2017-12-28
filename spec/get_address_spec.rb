@@ -57,7 +57,8 @@ RSpec.describe GetAddress do
     before { configure }
 
     it 'should send a request' do
-      expect(do_request[:request]).to be_a GetAddress::Request
+      expect(do_request).to be_a GetAddress::Response
+      expect(do_request.status).to eq 200
     end
   end
 end
