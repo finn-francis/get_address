@@ -6,7 +6,7 @@ RSpec.describe GetAddress::Response do
   let(:request) { GetAddress::Request.new(options) }
   let(:options) { { postcode: 'FOO' } }
   # TODO move this somewhere else
-  let(:expected_addresses) do
+  let(:keymapped_addresses) do
     [
       {
         line_1: "Johnstone Kemp Tooley Ltd",
@@ -69,13 +69,13 @@ RSpec.describe GetAddress::Response do
 
     describe '#map_addresses' do
       it 'should return the addresses keymapped' do
-        expect(response.send(:map_addresses)).to eq expected_addresses
+        expect(response.send(:map_addresses)).to eq keymapped_addresses
       end
     end
 
     describe '#body' do
       it 'should return the body with the addressed keymapped' do
-        expect(response.body).to eq ({latitude: 51.064519, longitude: -0.328801, addresses: expected_addresses})
+        expect(response.body).to eq ({latitude: 51.064519, longitude: -0.328801, addresses: keymapped_addresses})
       end
     end
 
