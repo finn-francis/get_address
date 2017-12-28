@@ -33,7 +33,7 @@ module GetAddress
       addresses.map do |address|
         lines = address.split(', ')
 
-        config.raw_keymap.each_with_object({}) do |line, hash|
+        config.keymappings.each_with_object({}) do |line, hash|
           hash[line[0]] = lines[line[1]]
         end
       end

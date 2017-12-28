@@ -21,17 +21,11 @@ module GetAddress
       }
     end
 
+    # TODO need to think about re-naming these methods
     def keymap
       keymappings.sort_by {|k, v| v}.map(&:first)
     end
 
-    def raw_keymap
-      keymappings
-    end
-
-    private
-
-    # TODO maybe make this public
     def keymappings
       @keymap ||= {
         line_1:   0,

@@ -37,7 +37,7 @@ RSpec.describe GetAddress::Configuration do
 
       it 'should set the keymap and keymappings' do
         expect(config.keymap).to eq [:line_1, :line_2, :line_3, :line_4, :county, :town, :country]
-        expect(config.send(:keymappings)).to eq expected_keymappings
+        expect(config.keymappings).to eq expected_keymappings
       end
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe GetAddress::Configuration do
       }
     end
     it 'should return the keymappings' do
-      expect(config.send(:keymappings)).to eq keymappings
+      expect(config.keymappings).to eq keymappings
     end
   end
 end
