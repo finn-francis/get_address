@@ -3,6 +3,7 @@ require 'get_address/missing_fields_error'
 require 'get_address/configuration'
 require 'get_address/url_generator'
 require 'get_address/request'
+require 'get_address/response'
 
 module GetAddress
   BASE_URL = 'https://api.getAddress.io/find/'
